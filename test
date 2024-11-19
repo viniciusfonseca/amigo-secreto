@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+ID_GRUPO=$(curl -s -X POST http://localhost:3000/grupos | jq .id )
+
+curl http://localhost:3000/grupos/$ID_GRUPO/participantes -H "Content-Type: application/json" -d '{"nome": "Fulano123"}'
+curl http://localhost:3000/grupos/$ID_GRUPO/participantes -H "Content-Type: application/json" -d '{"nome": "Fulano456"}'
+curl http://localhost:3000/grupos/$ID_GRUPO/participantes -H "Content-Type: application/json" -d '{"nome": "Fulano789"}'
+curl http://localhost:3000/grupos/$ID_GRUPO/participantes -H "Content-Type: application/json" -d '{"nome": "Fulano12345"}'
+curl http://localhost:3000/grupos/$ID_GRUPO/participantes -H "Content-Type: application/json" -d '{"nome": "Fulano67890"}'
+
+curl -X POST http://localhost:3000/grupos/$ID_GRUPO/sorteios
