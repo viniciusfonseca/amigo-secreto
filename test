@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 
-ID_GRUPO=$(curl -s -X POST http://localhost:3000/grupos | jq .id )
+# HOST="http://localhost:3000"
+HOST="https://amigo-secreto-u376.onrender.com"
+JSONH="Content-Type: application/json"
+ID_GRUPO=$(curl -s -X POST $HOST/grupos | jq .id )
 
-curl http://localhost:3000/grupos/$ID_GRUPO/participantes -H "Content-Type: application/json" -d '{"nome": "Fulano123"}'
-curl http://localhost:3000/grupos/$ID_GRUPO/participantes -H "Content-Type: application/json" -d '{"nome": "Fulano456"}'
-curl http://localhost:3000/grupos/$ID_GRUPO/participantes -H "Content-Type: application/json" -d '{"nome": "Fulano789"}'
-curl http://localhost:3000/grupos/$ID_GRUPO/participantes -H "Content-Type: application/json" -d '{"nome": "Fulano12345"}'
-curl http://localhost:3000/grupos/$ID_GRUPO/participantes -H "Content-Type: application/json" -d '{"nome": "Fulano67890"}'
+curl -s $HOST/grupos/$ID_GRUPO/participantes -H "$JSONH" -d '{"nome": "Fulano123"}'
+curl -s $HOST/grupos/$ID_GRUPO/participantes -H "$JSONH" -d '{"nome": "Fulano456"}'
+curl -s $HOST/grupos/$ID_GRUPO/participantes -H "$JSONH" -d '{"nome": "Fulano789"}'
+curl -s $HOST/grupos/$ID_GRUPO/participantes -H "$JSONH" -d '{"nome": "Fulano12345"}'
+curl -s $HOST/grupos/$ID_GRUPO/participantes -H "$JSONH" -d '{"nome": "Fulano67890"}'
 
-curl -X POST http://localhost:3000/grupos/$ID_GRUPO/sorteios
+curl -s -X POST $HOST/grupos/$ID_GRUPO/sorteios
+
+curl -s $HOST/grupos/$ID_GRUPO/participantes/Fulano123/amigo_secreto
+curl -s $HOST/grupos/$ID_GRUPO/participantes/Fulano456/amigo_secreto
+curl -s $HOST/grupos/$ID_GRUPO/participantes/Fulano789/amigo_secreto
+curl -s $HOST/grupos/$ID_GRUPO/participantes/Fulano12345/amigo_secreto
+curl -s $HOST/grupos/$ID_GRUPO/participantes/Fulano67890/amigo_secreto
